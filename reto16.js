@@ -8,9 +8,6 @@ function packGifts(gifts, maxWeight) {
   if (gifts.length === 0) return 0;
   if (Math.max(...gifts) > maxWeight) return null;
 
-  const canFitInSleigh = (weight, gift) => weight + gift <= maxWeight;
-  const markAsUsed = (used, index) => used[index] = true;
-  
   let sleighs = 0;
   const used = new Array(gifts.length).fill(false);
 
@@ -18,12 +15,12 @@ function packGifts(gifts, maxWeight) {
     if (used[i]) continue;
 
     let currentWeight = gifts[i];
-    markAsUsed(used, i);
+    used[i] = true;
 
     for (let j = i + 1; j < gifts.length; j++) {
-      if (!used[j] && canFitInSleigh(currentWeight, gifts[j])) {
+      if (!used[j] && currentWeight + gifts[j] <= maxWeight) {
         currentWeight += gifts[j];
-        markAsUsed(used, j);
+        used[j] = true;
       }
     }
 
