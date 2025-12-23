@@ -8,7 +8,6 @@ function minStepsToDeliver(map) {
   let start = null;
   const giftLocations = [];
 
-  // Locate the starting point 'S' and all gift locations 'G'
   for (let r = 0; r < numRows; r++) {
     for (let c = 0; c < numCols; c++) {
       if (map[r][c] === 'S') start = [r, c];
@@ -18,7 +17,6 @@ function minStepsToDeliver(map) {
 
   if (!start) return -1;
 
-  // BFS function to find shortest path from start to all gifts
   function bfs(start) {
     const directions = [
       [1, 0], [-1, 0], [0, 1], [0, -1]
@@ -52,7 +50,7 @@ function minStepsToDeliver(map) {
 
   for (const [gr, gc] of giftLocations) {
     const dist = distancesFromStart[gr][gc];
-    if (dist === Infinity) return -1; // Gift is unreachable
+    if (dist === Infinity) return -1;
     totalSteps += dist;
   }
 
