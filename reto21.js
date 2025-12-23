@@ -17,7 +17,6 @@ function clearGifts(warehouse, drops) {
       }
     }
 
-    // Only check the row where the gift was placed
     if (placedRow !== -1 && warehouse[placedRow].every(cell => cell === '#')) {
       warehouse.splice(placedRow, 1);
       warehouse.unshift(new Array(numCols).fill('.'));
